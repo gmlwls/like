@@ -1,0 +1,15 @@
+<div style="height:100vh; width: 50%; margin: 0 auto;">
+    <div style="margin-bottom: 2em;">
+        <br>
+        <h1 align=center>게시글을 작성해주세요!</h1>
+    </div>
+        <center>
+        <form method="post" action="/main/listcreate/<%= @id %>">
+            <input type="text" name="title" id="title" placeholder="제목" style="width: 500px;" /><br>
+            <input type="text" name="name" id="name" value=<%=@user.username%> style="width: 500px;" /><br>
+            <textarea name="content" id="message" placeholder="게시글 내용" rows="3" style="width: 500px;"></textarea><br>
+            <br><input type="submit" value="Enter!" align="center" />
+        </form>
+        </center>
+
+</div>
