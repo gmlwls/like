@@ -59,7 +59,8 @@ class MainController < ApplicationController
   
   def commentcreate
     Comment.create(post_id: params[:id],
-                   commment: params[:comment])
+                   comment: params[:comment],
+                   username: params[:username])
     redirect_to :back
   end
   

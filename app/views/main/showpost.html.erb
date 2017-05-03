@@ -1,36 +1,39 @@
-			<header id="header">
-				<div class="inner">
-					<a href="#" class="image avatar"><img src="/assets/lion.png" alt="" /></a>
-					<h1><strong>CowGroup!!</strong></h1>
-					<p>자신만의 소그룹을 만들어 얘기해봅시다.</p>
-					<a href="/main/view/<%=@post.id%>" class="button">돌아가기</a>
-				</div>
-			</header>
-         
-            <!-- Main -->
-        <div id="main">
-            <section>
-                <h1><%=@post.title %></h1>
-                <div style="border: 2px solid #ccc; border-radius: 4px; height: 50vh; margin-top: 1em; padding: 1em"><%=@post.content %></div>
-            </section>
-              
-             <section>
-                <h3 style="margin-bottom: 1em;">이 게시글의 댓글</h3>
-                <% @comment.each do |c| %>
-                <li style="border: 1.5px solid #ccc; border-radius: 4px; list-style: none; padding: 0em 1em; margin-bottom: 0.5em;"><%=c.commment%></li>
-                <% end %>
-            </section>
-            <section>
-                <h3 style="margin-bottom: 1em;">댓글달기</h3>
-            <form method="post" action="/main/commentcreate/<%=@post.id %>">
-            <div class="12u$">
-                              <textarea name="comment" id="comment" placeholder="댓글을 달아주세요~" rows="3" style="width:600px;"></textarea>
-                           </div><br>
-                           <div class="12u$">
-                              <ul class="actions">
-                                 <li><input type="submit" value="댓글 달기" class="special" /></li>
-                              </ul>
-            </div></form>
-            </section>
-        </div>
+<header id="header">
+	<div class="inner">
+		<a href="#" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
+		<h1><strong>CowGroup!!</strong></h1>
+		<p>자신만의 소그룹을<br>만들어 얘기해봅시다.</p>
+		<a href="/main/view/<%=@post.id%>" class="button">돌아가기</a>
+	</div>
+</header>
+
+<!-- Main -->
+<div id="main">
+    <section>
+        <h1><%=@post.title %></h1>
+        <div style="border: 2px solid #ccc; border-radius: 4px; height: 50vh; margin: 1em 0; padding: 1em"><%=@post.content %></div>
+        <a href="/likes/create/<%=@post.id%>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a> <%=@post.likes.size %>명이 좋아합니다.<br>
+        (좋아하는 사람 : <% @post.users.each do |u| %> <%=u.username%> <%end%>)
+    </section>
+      
+     <section>
+        <h3 style="margin-bottom: 1em;">이 게시글의 댓글</h3>
+        <% @comment.each do |c| %>
+        <li style="border: 1.5px solid #ccc; border-radius: 4px; list-style: none; padding: 0em 1em; margin-bottom: 0.5em; width: 300px;"><strong><%=c.username%></strong> : <%=c.comment%></li>
+        <% end %>
+    </section>
+    <section style="clear: both;">
+        <h3 style="margin-bottom: 1em;">댓글달기</h3>
+    <form method="post" action="/main/commentcreate/<%=@post.id %>">
+        <input type="hidden" name="username" value=<%=@user.username%>>
+    <div class="12u$">
+                      <textarea name="comment" id="comment" placeholder="댓글을 달아주세요~" rows="3" style="width:600px;"></textarea>
+                   </div><br>
+                   <div class="12u$">
+                      <ul class="actions">
+                         <li><input type="submit" value="댓글 달기" class="special" /></li>
+                      </ul>
+    </div></form>
+    </section>
+</div>
                      
