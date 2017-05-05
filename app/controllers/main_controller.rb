@@ -63,9 +63,13 @@ class MainController < ApplicationController
                    username: params[:username])
     redirect_to :back
   end
-  
+
   private
   def set_user
-    @user = User.find(session[:user_id])
+    if session[:user_id].nil?
+      redirect_to '/users/login'
+    else
+      @user = User.find(session[:user_id])
+    end
   end
 end
