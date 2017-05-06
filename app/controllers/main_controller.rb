@@ -37,7 +37,8 @@ class MainController < ApplicationController
   end
   
   def search
-    @list = Group.where(creater: params[:search])
+    search = params[:search]
+    @list = Group.where("creater LIKE ? OR gp_name LIKE ?", "%#{search}%", "%#{search}%")
   end
   
   def list
