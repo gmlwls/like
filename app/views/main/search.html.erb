@@ -1,7 +1,7 @@
 
 <header id="header">
-	<div class="inner">
-		<a href="#" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
+	<div class="inner text-center">
+		<a href="/main/mypage" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
 		<h1><strong>CowGroup!!</strong></h1>
 		<p>자신만의 소그룹을 만들어 얘기해봅시다.</p>
 		<a href="/main/create" class="button">소그룹생성하기</a><br><br>
@@ -15,12 +15,18 @@
         <section>
 		    <h2 style="margin-bottom: 1em;">검색된 소모임</h2>
 			<div class="row">
+				<% if @list.empty? %>
+				검색된 소모임이 없습니다.
+				<% else %>
 			    <% @list.each do |l| %>
+			    <div class="col-sm-6">
 				<article class="6u 12u$(xsmall) work-item">
 					<a href="/main/view/<%= l.id %>" class="image fit thumb"><img src="/assets/lion.png" alt="" /></a>
 					<center><h3><%= l.gp_name %></h3>
-					<p><%= l.content %></p></center>
+					<p><%= l.creater %></p></center>
 				</article>
+				</div>
+				<% end %>
 				<% end %>
 			</div>
 		</section>

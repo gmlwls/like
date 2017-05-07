@@ -1,15 +1,49 @@
-<div style="height:100vh; width: 50%; margin: 0 auto;">
-    <div style="margin-bottom: 2em;">
-        <br>
-        <h1 align=center>게시글을 작성해주세요!</h1>
+<div class="back">
+    <div class="container-fluid text-center">
+      <img src="/assets/logo.jpg" alt="" style="height: 85px"/>
+    <h1>Cow Group</h1>
+    <p>소그룹 생성 페이지에 오신걸 환영합니다! </p>
     </div>
-        <center>
-        <form method="post" action="/main/listcreate/<%= @id %>">
-            <input type="text" name="title" id="title" placeholder="제목" style="width: 500px;" /><br>
-            <input type="text" name="name" id="name" value=<%=@user.username%> style="width: 500px;" /><br>
-            <textarea name="content" id="message" placeholder="게시글 내용" rows="3" style="width: 500px;"></textarea><br>
-            <br><input type="submit" value="Enter!" align="center" />
-        </form>
-        </center>
-
+    
+    <form method="post" action="/main/listcreate/<%= @id %>">
+        <div class="row">
+          <div class="col-offset-2 col-8 col-sm-offset-3 col-sm-6">
+            <div class="form-group">
+            <input class="form-control log" type="text" name="title" id="title" placeholder="제목">
+            </div>
+          </div>
+        </div>    
+        <div class="row">
+          <div class="col-offset-2 col-8 col-sm-offset-3 col-sm-6">
+            <div class="form-group">
+            <input class="form-control" type="text" name="name" id="name" value=<%=@user.username%>>
+            </div>
+            <textarea class="form-control" name="content" id="message" placeholder="게시글 내용" rows="5"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-offset-4 col-sm-4">
+            <div class="form-group">
+            <button class="button btn-lg log">생성</button>
+            </div>
+          </div>
+        </div>
+    </form>
 </div>
+
+<!--<div style="height:100vh; width: 50%; margin: 0 auto;">-->
+<!--    <div style="margin-bottom: 2em;">-->
+<!--        <br>-->
+<!--        <h1 align=center>게시글을 작성해주세요!</h1>-->
+<!--    </div>-->
+<!--        <center>-->
+<!--        <form method="post" action="/main/listcreate/<%= @id %>">-->
+<!--            <input type="text" name="title" id="title" placeholder="제목" style="width: 500px;" /><br>-->
+<!--            <input type="text" name="name" id="name" value=<%=@user.username%> style="width: 500px;" /><br>-->
+<!--            <textarea name="content" id="message" placeholder="게시글 내용" rows="3" style="width: 500px;"></textarea><br>-->
+<!--            <br><input type="submit" value="Enter!" align="center" />-->
+<!--        </form>-->
+<!--        </center>-->
+
+<!--</div>-->

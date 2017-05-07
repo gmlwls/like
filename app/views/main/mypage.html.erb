@@ -1,7 +1,6 @@
-
 <header id="header">
 	<div class="inner text-center">
-		<a href="#" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
+		<a href="/main/mypage" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
 		<h1><strong>CowGroup!!</strong></h1>
 		<p>반가워요. <strong><%=@username%>님!</strong><br>
 			자신만의 소그룹을<br>만들어 얘기해봅시다.</p>
@@ -13,18 +12,28 @@
 
 <div id="main" class="text-center">
   <form action="/main/search" method="post">
-    <input type="text" name="search" placeholder="검색 할 닉네임을 적어주세요.">
+  	<div class="row">
+  		<div class="col-12 col-md-offset-2 col-md-8">
+  			<div class="input-group">
+  				<!--height같게하는법-->
+  				<input type="text" class="form-control" name="search" placeholder="검색 할 이름/모임이름">
+  				<span class="input-group-btn"><button class="btn">검색</button></span>
+  			</div>
+  		</div>
+  	</div>
   </form>
 
 	<section>
 	  <h1 style="margin-bottom: 0.5em; background-color:gray; color: white;">스터디</h1>
 		<div class="row">
 		    <% @list1.each do |l| %>
+		    <div class="col-sm-6">
 			<article class="6u 12u$(xsmall) work-item">
 				<a href="/main/view/<%= l.id %>" class="image fit thumb"><img src="/assets/study.png" alt="" /></a>
 				<center><h3><%= l.gp_name %></h3>
-				<p><%= l.content %></p></center>
+				<p><%= l.creater %></p></center>
 			</article>
+			</div>
 			<% end %>
 		</div>
 	</section>
@@ -32,11 +41,13 @@
 	  <h1 style="margin-bottom: 0.5em; background-color:gray; color: white;">재능기부</h1>
 		<div class="row">
 		    <% @list2.each do |l| %>
+		    <div class="col-sm-6">
 			<article class="6u 12u$(xsmall) work-item">
 				<a href="/main/view/<%= l.id %>" class="image fit thumb"><img src="/assets/talent.jpg" alt="" /></a>
 				<center><h3><%= l.gp_name %></h3>
-				<p><%= l.content %></p></center>
+				<p><%= l.creater %></p></center>
 			</article>
+			</div>
 			<% end %>
 		</div>
 	</section>

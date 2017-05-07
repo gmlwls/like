@@ -1,8 +1,8 @@
 <header id="header">
-	<div class="inner">
-		<a href="#" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
+	<div class="inner text-center">
+		<a href="/main/mypage" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
 		<h1><strong><%= @list.gp_name %></strong></h1>
-		<p style="font-size: small;"><strong><%= @list.creater %></strong></p><hr>
+		<p style="font-size: small;"><strong><%= @list.creater %></strong></p><br><br>
 		<form action="/main/membercreate/<%= @list.id %>" method="post">
 		    <input type="hidden" name="name" value=<%=@user.username%>>
 		    <input class="button" type="submit" value="소그룹 가입하기">

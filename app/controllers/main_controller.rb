@@ -16,7 +16,7 @@ class MainController < ApplicationController
   def view
     @list = Group.find(params[:id])
     @member = Member.where(group_id: params[:id])
-    @post = Post.where(group_id: params[:id])
+    @post = Post.where(group_id: params[:id]).reverse
     
     session[:return_to] = request.fullpath
   end
@@ -27,8 +27,8 @@ class MainController < ApplicationController
       @username = User.find(session[:user_id]).username
     end
     
-    @list1 = Group.where(category: "study")
-    @list2 = Group.where(category: "talent")
+    @list1 = Group.where(category: "study").reverse
+    @list2 = Group.where(category: "talent").reverse
   end
   
   def membercreate
@@ -38,7 +38,12 @@ class MainController < ApplicationController
   
   def search
     search = params[:search]
-    @list = Group.where("creater LIKE ? OR gp_name LIKE ?", "%#{search}%", "%#{search}%")
+    # 검색어입력안하거나 바로들어갈때 처리
+    if search.nil? || search.empty?
+      @list=[]
+    else
+      @list = Group.where("creater LIKE ? OR gp_name LIKE ?", "%#{search}%", "%#{search}%")
+    end
   end
   
   def list
@@ -55,7 +60,7 @@ class MainController < ApplicationController
   
   def showpost
     @post = Post.find(params[:id])
-    @comment = Comment.where(post_id: params[:id])
+    @comment = Comment.where(post_id: params[:id]).reverse
   end
   
   def commentcreate
