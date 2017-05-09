@@ -11,8 +11,11 @@
 <div id="main">
     <section>
         <h1><%=@post.title %></h1>
-        <div style="border: 2px solid #ccc; border-radius: 4px; height: 50vh; margin: 1em 0; padding: 1em"><%=@post.content %></div>
-        <a href="/likes/create/<%=@post.id%>"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a> <%=@post.likes.size %>명이 좋아합니다.<br>
+        <div class="post_content"><%=@post.content %></div>
+        <%= link_to likes_create_path(post_id: @post.id) do %>
+            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+        <% end %>
+        <%=@post.likes.size %>명이 좋아합니다.<br>
         (좋아하는 사람 : <% @post.users.each do |u| %> <%=u.username%> <%end%>)
     </section>
       
@@ -24,22 +27,23 @@
                 <li style="border: 1.5px solid #ccc; border-radius: 4px; list-style: none; padding: 0em 1em;"><strong><%=c.username%></strong> : <%=c.comment%></li>
             </div>
         </div>
-        <!--<li style="border: 1.5px solid #ccc; border-radius: 4px; list-style: none; padding: 0em 1em; margin-bottom: 0.5em; width: 300px;"><strong><%=c.username%></strong> : <%=c.comment%></li>-->
         <% end %>
     </section>
     <section style="clear: both;">
         <h3 style="margin-bottom: 1em;">댓글달기</h3>
-        <form method="post" action="/main/commentcreate/<%=@post.id %>">
-            <input type="hidden" name="username" value=<%=@user.username%>>
+        <%= form_tag(main_commentcreate_path(id: @post.id), method: "post") do %>
+            <%= hidden_field_tag "username", @user.username %>
             <div class="12u$">
-                <textarea name="comment" id="comment" placeholder="댓글을 달아주세요~" rows="3"></textarea>
+                <%= text_area_tag "comment", nil, placeholder: "댓글을 달아주세요~", rows: "3" %>
             </div><br>
             <div class="12u$">
                 <ul class="actions">
-                <li><input type="submit" value="댓글 달기" class="special" /></li>
+                <li>
+                    <%= submit_tag "댓글 달기", class: "special" %>
+                </li>
                 </ul>
             </div>
-        </form>
+        <% end %>
     </section>
 </div>
                      

@@ -1,27 +1,28 @@
 <header id="header">
 	<div class="inner text-center">
-		<a href="/main/mypage" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
+		<%= link_to "/main/mypage", class: "image avatar" do %>
+			<%= image_tag "logo.jpg" %>
+		<% end %>
 		<h1><strong>CowGroup!!</strong></h1>
 		<p>반가워요. <strong><%=@username%>님!</strong><br>
 			자신만의 소그룹을<br>만들어 얘기해봅시다.</p>
-		<a href="/main/create" class="button btn-lg">소그룹생성하기</a><br><br>
-		<a href="/users/logout" class="button btn-lg">로그아웃</a>
+		<%= link_to "소그룹생성하기", "/main/create", class: "button btn-lg" %><br><br>
+		<%= link_to "로그아웃", "/users/logout", class: "button btn-lg" %>
 	</div>
 </header>
 
 
 <div id="main" class="text-center">
-  <form action="/main/search" method="post">
+	<%= form_tag("/main/search", method: "post") do %>
   	<div class="row">
   		<div class="col-12 col-md-offset-2 col-md-8">
-  			<div class="input-group">
-  				<!--height같게하는법-->
-  				<input type="text" class="form-control" name="search" placeholder="검색 할 이름/모임이름">
-  				<span class="input-group-btn"><button class="btn">검색</button></span>
+  			<div class="input-group search">
+  				<%= text_field_tag "search", nil, class: "form-control insearch", placeholder: "검색할 이름/모임이름" %>
+  				<span class="input-group-btn"><%= button_to "검색", class: "btn insearch" %></span>
   			</div>
   		</div>
   	</div>
-  </form>
+  <% end %>
 
 	<section>
 	  <h1 style="margin-bottom: 0.5em; background-color:gray; color: white;">스터디</h1>
@@ -29,7 +30,9 @@
 		    <% @list1.each do |l| %>
 		    <div class="col-sm-6">
 			<article class="6u 12u$(xsmall) work-item">
-				<a href="/main/view/<%= l.id %>" class="image fit thumb"><img src="/assets/study.png" alt="" /></a>
+				<%= link_to main_view_path(id: l.id), class: "image fit thumb" do %>
+					<%= image_tag "study.png" %>
+				<% end %>
 				<center><h3><%= l.gp_name %></h3>
 				<p><%= l.creater %></p></center>
 			</article>
@@ -43,7 +46,9 @@
 		    <% @list2.each do |l| %>
 		    <div class="col-sm-6">
 			<article class="6u 12u$(xsmall) work-item">
-				<a href="/main/view/<%= l.id %>" class="image fit thumb"><img src="/assets/talent.jpg" alt="" /></a>
+				<%= link_to main_view_path(id: l.id), class: "image fit thumb" do %>
+					<%= image_tag "talent.jpg" %>
+				<% end %>
 				<center><h3><%= l.gp_name %></h3>
 				<p><%= l.creater %></p></center>
 			</article>

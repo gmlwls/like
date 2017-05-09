@@ -13,22 +13,20 @@ Rails.application.routes.draw do
   get 'main/create'
   post 'main/save'
 
-  get 'main/view/:id' => 'main#view'
-  post 'main/membercreate/:id' =>'main#membercreate'
+  get 'main/view/:id' => 'main#view', as: "main_view"
+  post 'main/membercreate/:id' =>'main#membercreate', as: "main_membercreate"
   
   get 'main/search'
   post 'main/search'
   
-  get 'main/list/:id' => 'main#list'
-  post 'main/list/:id' => 'main#list'
+  get 'main/list/:id' => 'main#list', as: "main_list"
   
-  post 'main/listcreate/:id' => 'main#listcreate'
+  post 'main/listcreate/:id' => 'main#listcreate', as: "main_listcreate"
 
-  get 'main/showpost/:id' => 'main#showpost'
-  post 'main/showpost/:id' => 'main#showpost'
-  post 'main/commentcreate/:id' => 'main#commentcreate'
+  get 'main/showpost/:id' => 'main#showpost', as: "main_showpost"
+  post 'main/commentcreate/:id' => 'main#commentcreate', as: "main_commentcreate"
   
-  get 'likes/create/:post_id' => 'likes#create'
+  get 'likes/create/:post_id' => 'likes#create', as: "likes_create"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

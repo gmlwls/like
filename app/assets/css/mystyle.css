@@ -15,3 +15,15 @@
     margin: 0 0 30px 0;
     height: 4em;
 }
+.search {
+    height: 40px;
+}
+.search .insearch {
+    height: 100%;
+}
+.post_content {
+    border: 2px solid #ccc; border-radius: 4px; height: 50vh; margin: 1em 0; padding: 1em;
+}
+.post_write {
+    float:right; font-size:13px;
+}

@@ -1,28 +1,28 @@
 <div class="back">
   <div class="text-center">
     <div class="container-fluid">
-    <h1><img src="/assets/logo.jpg" alt="" style="height: 85px"/><br>Cow Group</h1>
+    <h1><%= image_tag "logo.jpg", style: "height: 85px" %><br>Cow Group</h1>
     <p width=40px font-size=10px>회원가입! </p>
     </div>
     
-    <form action="/users/join_process", method="post">
+    <%= form_tag("/users/join_process", method: "post") do %>
       <div class="row">
       <div class="col-sm-offset-2 col-sm-8 form-group">
-        <input class="form-control log" type="text" name="username" id="name" placeholder="이름을 입력해주세요">
+        <%= text_field_tag "username", nil, class: "form-control log", placeholder: "이름을 입력해주세요" %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-offset-2 col-sm-8 form-group">
-        <input class="form-control log" type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
+        <%= password_field_tag "password", nil, class: "form-control log", placeholder: "비밀번호를 입력해주세요" %>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-sm-offset-4 col-sm-4 form-group">
-        <button class="form-control button btn-lg log">REGISTER</button>
+        <%= submit_tag "REGISTER", class: "form-control btn btn-lg log" %>
       </div>
     </div>
-    </form>
+    <% end %>
 </div>
                   
                      

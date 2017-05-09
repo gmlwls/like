@@ -1,11 +1,13 @@
 
 <header id="header">
 	<div class="inner text-center">
-		<a href="/main/mypage" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
+		<%= link_to "/main/mypage", class: "image avatar" do %>
+			<%= image_tag "logo.jpg" %>
+		<% end %>
 		<h1><strong>CowGroup!!</strong></h1>
 		<p>자신만의 소그룹을 만들어 얘기해봅시다.</p>
-		<a href="/main/create" class="button">소그룹생성하기</a><br><br>
-		<a href="/main/mypage" class="button">돌아가기</a>
+		<%= link_to "소그룹생성하기", "/main/create", class: "button" %><br><br>
+		<%= link_to "돌아가기", "/main/mypage", class: "button" %>
 	</div>
 </header>
 
@@ -21,7 +23,9 @@
 			    <% @list.each do |l| %>
 			    <div class="col-sm-6">
 				<article class="6u 12u$(xsmall) work-item">
-					<a href="/main/view/<%= l.id %>" class="image fit thumb"><img src="/assets/lion.png" alt="" /></a>
+					<%= link_to main_view_path(id: l.id), class: "image fit thumb" do %>
+						<%= image_tag "lion.png" %>
+					<% end %>
 					<center><h3><%= l.gp_name %></h3>
 					<p><%= l.creater %></p></center>
 				</article>

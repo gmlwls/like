@@ -1,13 +1,15 @@
 <header id="header">
 	<div class="inner text-center">
-		<a href="/main/mypage" class="image avatar"><img src="/assets/logo.jpg" alt="" /></a>
+		<%= link_to "/main/mypage", class: "image avatar" do %>
+			<%= image_tag "logo.jpg" %>
+		<% end %>
 		<h1><strong><%= @list.gp_name %></strong></h1>
 		<p style="font-size: small;"><strong><%= @list.creater %></strong></p><br><br>
-		<form action="/main/membercreate/<%= @list.id %>" method="post">
-		    <input type="hidden" name="name" value=<%=@user.username%>>
-		    <input class="button" type="submit" value="소그룹 가입하기">
-		</form>
-		<a href="/main/mypage" class="button">돌아가기</a>
+		<%= form_tag(main_membercreate_path(id: @list.id), method: "post") do %>
+		    <%= hidden_field_tag "name", @user.username %>
+		    <%= submit_tag "소그룹 가입하기", class: "button" %>
+		<% end %>
+		<%= link_to "돌아가기", "/main/mypage", class: "button" %>
 	</div>
 </header>
 <div id="main">
@@ -21,7 +23,7 @@
 	<section>
 	    <div style="overflow:hidden;">
 	        <h2 style="float:left;">소그룹 게시판</h2>
-	        <a href="/main/list/<%= @list.id %>" class="button" style="float:right; font-size:13px;">게시글쓰기</a>
+	        <%= link_to "게시글 쓰기", main_list_path(id: @list.id), class: "button post_write" %>
 	    </div>
         <div class="table-wrapper" style="margin-top: 1em;">
                         <table>
@@ -34,7 +36,9 @@
                               <% @post.each do |p| %>
                               <tr>
                                  <td width="10%"><%= p.id %></td>
-                              	 <td width="70%"><a href="/main/showpost/<%= p.id %>"><%= p.title %></a></td>
+                              	 <td width="70%">
+                              	     <%= link_to p.title, main_showpost_path(id: p.id) %>
+                              	 </td>
                               	 <td width="20%"><%= p.name %></td>
                               </tr>
                               <% end %>
@@ -48,7 +52,3 @@
     </section>
 
 </div>
-
- <!--<h1 style="float:left;">소그룹 게시판 </h1>-->
- <!--            <a href="#" class="button" style="margin-left:450px; margin-top:5px; font-size:13px;"> 게시글쓰기</a><br><br>-->
- <!--               <div class="table-wrapper" style="clear:both;">-->
